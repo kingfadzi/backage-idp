@@ -4,6 +4,7 @@ import {
     createOAuthProviderFactory,
 } from '@backstage/plugin-auth-node';
 import { gitlabAuthenticator } from '@backstage/plugin-auth-backend-module-gitlab-provider';
+import { googleAuthenticator } from '@backstage/plugin-auth-backend-module-google-provider';
 
 const customAuthModule = createBackendModule({
     pluginId: 'auth',
@@ -28,11 +29,26 @@ const customAuthModule = createBackendModule({
                         },
                     }),
                 });
+
+                // Register Google Authentication
+                providers.registerProvider({
+                    providerId: 'google',
+                    factory: createOAuthProviderFactory({
+                        authenticator: googleAuthenticator,
+                        signInResolver(info, ctx) {
+                            const userRef = `user:default/${info.result.fullProfile.username}`;
+                            return ctx.issueToken({
+                                claims: {
+                                    sub: userRef,
+                                    ent: [userRef],
+                                },
+                            });
+                        },
+                    }),
+                });
             },
         });
     },
 });
-
-
 
 export default customAuthModule;

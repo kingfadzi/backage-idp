@@ -41,6 +41,8 @@ import { OnboardingOpenshiftPage } from 'plugin-onboarding-openshift';
 import { OnboardingPage } from '@internal/backstage-plugin-onboarding';
 
 import { providers } from './components/signin/identityProviders';
+import { GitlabPage } from '@internal/backstage-plugin-gitlab';
+import { OnboardingGitlabPage } from '@internal/backstage-plugin-onboarding-gitlab';
 
 const app = createApp({
   apis,
@@ -112,6 +114,8 @@ const routes = (
     <Route path="/catalog-graph" element={<CatalogGraphPage />} />
     <Route path="/onboarding-openshift" element={<OnboardingOpenshiftPage />}/>
     <Route path="/onboarding" element={<OnboardingPage />} />
+    <Route path="/gitlab" element={<GitlabPage />} />
+    <Route path="/onboarding-gitlab" element={<OnboardingGitlabPage />} />
   </FlatRoutes>
 );
 

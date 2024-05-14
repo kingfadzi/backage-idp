@@ -63,6 +63,8 @@ import { GitlabPipelineList,
         GitlabJobs
 } from '@veecode-platform/backstage-plugin-gitlab-pipelines';
 
+import { EntityKubernetesContent } from '@backstage/plugin-kubernetes';
+
 const techdocsContent = (
   <EntityTechdocsContent>
     <TechDocsAddons>
@@ -170,6 +172,10 @@ const serviceEntityPage = (
 
       <EntityLayout.Route path="/my-plugin" title="My Plugin">
           <OnboardingOpenshiftPage />
+      </EntityLayout.Route>
+
+      <EntityLayout.Route path="/kubernetes" title="Kubernetes">
+          <EntityKubernetesContent refreshIntervalMs={30000} />
       </EntityLayout.Route>
 
     <EntityLayout.Route path="/api" title="API">

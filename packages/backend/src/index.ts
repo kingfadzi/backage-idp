@@ -14,7 +14,7 @@ const backend = createBackend();
 // Add custom authentication module
 backend.add(customAuthModule);
 
-
+backend.add(import('@backstage/plugin-kubernetes-backend/alpha'));
 
 backend.add(import('@backstage/plugin-app-backend/alpha'));
 backend.add(import('@backstage/plugin-proxy-backend/alpha'));

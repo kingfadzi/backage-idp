@@ -28,20 +28,33 @@ export const ExampleComponent = () => {
   const classes = useStyles();
   const navigate = useNavigate();
 
+  const systemRoutes = {
+    GitLab: '/onboarding-gitlab',
+    OpenShift: '/onboarding-openshift',
+    Vault: '/onboarding-vault',
+    JIRA: '/onboarding-jira',
+    SonarQube: '/onboarding-sonarqube',
+    Confluence: '/onboarding-confluence',
+    // Add more systems and their routes here as needed
+  };
+
   // Function to handle click on a tile
   const handleOnboardSystem = (systemName) => {
     console.log(`Onboarding to ${systemName}`);
-    // Navigate to the specific onboarding page if OpenShift is clicked
-    if (systemName === 'OpenShift') {
-      navigate('/onboarding-openshift');
+    const route = systemRoutes[systemName];
+    if (route) {
+      navigate(route);
+    } else {
+      console.error(`No route defined for ${systemName}`);
     }
   };
 
   const systems = [
+    { name: 'GitLab', description: 'Source control and CI/CD with GitLab.' },
     { name: 'OpenShift', description: 'Manage your OpenShift deployments.' },
     { name: 'Vault', description: 'Access management with HashiCorp Vault.' },
     { name: 'JIRA', description: 'Track your project with Atlassian JIRA.' },
-    { name: 'GitLab', description: 'Source control and CI/CD with GitLab.' },
+    { name: 'SonarQube', description: 'Quality control with SonarQube.' },
     { name: 'Confluence', description: 'Document collaboratively with Confluence.' },
   ];
 
